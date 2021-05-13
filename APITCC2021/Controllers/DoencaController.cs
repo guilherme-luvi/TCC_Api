@@ -8,17 +8,17 @@ namespace APITCC2021.Controllers
     [Route("[controller]")]
     public class DoencaController : ControllerBase
     {
-        //private readonly DoencasRepo _repo;
-        //public DoencaController(DoencasRepo repo)
-        //{
-        //    _repo = repo;
-        //}
+        private readonly DoencasRepo _repo;
+        public DoencaController(DoencasRepo repo)
+        {
+            _repo = repo;
+        }
 
-        //[HttpGet]
-        //public async Task<ActionResult<dynamic>> GetAll()
-        //{
-        //    var resp = await _repo.GetDoencas();
-        //    return Ok(resp);
-        //}
+        [HttpGet]
+        public async Task<ActionResult<dynamic>> GetAll()
+        {
+            var resp = await _repo.GetDoencas();
+            return Ok(resp);
+        }
     }
 }

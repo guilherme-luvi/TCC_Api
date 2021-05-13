@@ -9,22 +9,22 @@ namespace APITCC2021.Repositories
 {
     public class DoencasRepo
     {
-        //private readonly Context _context;
-        //public DoencasRepo(Context context)
-        //{
-        //    _context = context;
-        //}
+        private readonly Context _context;
+        public DoencasRepo(Context context)
+        {
+            _context = context;
+        }
 
-        //public async Task<List<Doenca>> GetDoencas()
-        //{
-        //    var resp = await _context.Doencas.ToListAsync();
-        //    return resp;
-        //}
+        public async Task<List<Doenca>> GetDoencas()
+        {
+            var resp = await _context.Doencas.ToListAsync();
+            return resp;
+        }
 
-        //public async Task<Doenca> GetDoencaById(int continenteId)
-        //{
-        //    var resp = await _context.Doencas.Where(c => c.Id == continenteId).FirstOrDefaultAsync();
-        //    return resp;
-        //}
+        public async Task<Doenca> GetDoencaById(int continenteId)
+        {
+            var resp = await _context.Doencas.Where(c => c.Id == continenteId).FirstOrDefaultAsync();
+            return resp;
+        }
     }
 }

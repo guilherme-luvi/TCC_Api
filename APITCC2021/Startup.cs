@@ -29,7 +29,7 @@ namespace APITCC2021
 
             services.AddControllers();
 
-            //services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("apsContext")));
+            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("tccContext")));
 
             //configuração Swagger
             services.AddSwaggerGen(c =>
