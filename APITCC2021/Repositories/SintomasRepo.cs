@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace APITCC2021.Repositories
 {
-    public class DoencasRepo
+    public class SintomasRepo
     {
         private readonly Context _context;
-        public DoencasRepo(Context context)
+        public SintomasRepo(Context context)
         {
             _context = context;
         }
 
-        public async Task<List<Doenca>> GetDoencas()
+        public async Task<List<Sintoma>> GetSintomas()
         {
-            var resp = await _context.Doencas.ToListAsync();
+            var resp = await _context.Sintomas.ToListAsync();
             return resp;
         }
 
-        public async Task<Doenca> GetDoencaById(int doencaId)
+        public async Task<Sintoma> GetSintomaById(int sintomaId)
         {
-            var resp = await _context.Doencas.Where(c => c.Id == doencaId).FirstOrDefaultAsync();
+            var resp = await _context.Sintomas.Where(c => c.Id == sintomaId).FirstOrDefaultAsync();
             return resp;
         }
     }

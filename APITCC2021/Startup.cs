@@ -83,6 +83,7 @@ namespace APITCC2021
 
             //Injeção de repos
             services.AddScoped<DoencasRepo>();
+            services.AddScoped<SintomasRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
