@@ -6,10 +6,10 @@ namespace APITCC2021.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SintomaController : ControllerBase
+    public class DoencasController : ControllerBase
     {
-        private readonly SintomasRepo _repo;
-        public SintomaController(SintomasRepo repo)
+        private readonly DoencasRepo _repo;
+        public DoencasController(DoencasRepo repo)
         {
             _repo = repo;
         }
@@ -17,14 +17,14 @@ namespace APITCC2021.Controllers
         [HttpGet]
         public async Task<ActionResult<dynamic>> GetAll()
         {
-            var resp = await _repo.GetSintomas();
+            var resp = await _repo.GetDoencas();
             return Ok(resp);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<dynamic>> GetById(int id)
         {
-            var resp = await _repo.GetSintomaById(id);
+            var resp = await _repo.GetDoencaById(id);
             return Ok(resp);
         }
     }
