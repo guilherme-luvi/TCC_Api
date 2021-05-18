@@ -1,5 +1,6 @@
 using APITCC2021.Data;
 using APITCC2021.Repositories;
+using APITCC2021.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -84,15 +85,21 @@ namespace APITCC2021
             //Injeção de repos
             services.AddScoped<DoencasRepo>();
             services.AddScoped<SintomasRepo>();
+            services.AddScoped<UsuariosRepo>();
+
+            //Injeção de serviços
+            services.AddScoped<JwtService>();
+            services.AddScoped<Seeds>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Seeds seeds)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            seeds.SeedTables();
 
             app.UseHttpsRedirection();
             app.UseRouting();
