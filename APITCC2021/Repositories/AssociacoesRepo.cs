@@ -61,7 +61,7 @@ namespace APITCC2021.Repositories
             {
                 var count = doencas.Where(x => x.Equals(doenca)).Count();
                 var porcentagem = (count * 100) / total;
-                vezesPorDoenca.Add(doenca + ": " + porcentagem);
+                vezesPorDoenca.Add(doenca + ":" + porcentagem);
             }
 
             //Gerar lista sem dados repetidos

@@ -1,5 +1,6 @@
 ﻿using APITCC2021.Models.Api;
 using APITCC2021.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace APITCC2021.Controllers
         }
 
         [HttpPost("gerar")]
+        [Authorize]
         public async Task<ActionResult<dynamic>> SignUp([FromBody] Respostas respostas)
         {
             try

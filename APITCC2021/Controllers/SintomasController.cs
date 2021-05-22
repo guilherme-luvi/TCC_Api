@@ -1,4 +1,5 @@
 ﻿using APITCC2021.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace APITCC2021.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<dynamic>> GetAll()
         {
             var resp = await _repo.GetSintomas();
@@ -22,6 +24,7 @@ namespace APITCC2021.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<dynamic>> GetById(int id)
         {
             var resp = await _repo.GetSintomaById(id);
