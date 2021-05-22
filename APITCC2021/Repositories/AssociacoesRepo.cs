@@ -55,14 +55,12 @@ namespace APITCC2021.Repositories
             //Quantidade total da lista de doencas
             var total = doencas.Count();
 
-            var vezesPorDoenca = new List<string>();
             //ver quantas vezes cada doenca aparece na lista
+            var vezesPorDoenca = new List<string>();
             foreach (var doenca in doencas)
             {
                 var count = doencas.Where(x => x.Equals(doenca)).Count();
-
                 var porcentagem = (count * 100) / total;
-
                 vezesPorDoenca.Add(doenca + ": " + porcentagem);
             }
 

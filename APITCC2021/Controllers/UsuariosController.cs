@@ -4,6 +4,7 @@ using APITCC2021.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace APITCC2021.Controllers
@@ -58,12 +59,27 @@ namespace APITCC2021.Controllers
             }
         }
 
-        [HttpDelete("{usuarioId}")]
+        //Encontrar usuário logado com JWT
+        [HttpGet("me")]
         [Authorize]
-        public async Task<ActionResult<dynamic>> Delete(int usuarioId)
+        public async Task<ActionResult<dynamic>> Me()
         {
-            var resp = await _repo.DeleteUsuario(usuarioId);
-            return Ok(resp);
+            try
+            {
+                var userId = int.Parse(this.User.Claims.First(i => i.Type == "UserId").Value);
+
+                var user = await _repo.FindUserById(userId);
+                if (user == null)
+                {
+                    return BadRequest();
+                }
+                user.Password = null;
+                return Ok(user);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

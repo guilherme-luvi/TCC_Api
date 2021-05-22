@@ -63,6 +63,16 @@ namespace APITCC2021.Repositories
             return "Usuário excluído.";
         }
 
+        public async Task<dynamic> FindUserById(int id)
+        {
+            var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
+        }
+
         private async Task<dynamic> FindUserByEmail(string email)
         {
             var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
@@ -72,6 +82,5 @@ namespace APITCC2021.Repositories
             }
             return null;
         }
-
     }
 }
