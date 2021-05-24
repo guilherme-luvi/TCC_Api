@@ -13,5 +13,6 @@ namespace APITCC2021.Data
         public DbSet<Doenca> Doencas { get; set; }
         public DbSet<Sintoma> Sintomas { get; set; }
         public DbSet<AssociacaoDoencaSintoma> AssociacaoDoencasSintomas { get; set; }
+        public DbSet<Diagnostico> Diagnosticos { get; set; }
     }
 }

@@ -1,20 +1,22 @@
 ﻿using APITCC2021.Data;
+using APITCC2021.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace APITCC2021.Repositories
 {
-    public class AssociacoesRepo
+    public class DiagnosticosRepo
     {
         private readonly Context _context;
-        public AssociacoesRepo(Context context)
+        public DiagnosticosRepo(Context context)
         {
             _context = context;
         }
 
-        public async Task<List<string>> GetAssociacoes(List<int> sintomasList)
+        public async Task<List<string>> GetResults(List<int> sintomasList)
         {
             //Buscar as associacoes dos sintoma
             var query = from item in _context.AssociacaoDoencasSintomas
@@ -67,6 +69,27 @@ namespace APITCC2021.Repositories
             //Gerar lista sem dados repetidos
             List<string> uniqueList = vezesPorDoenca.Distinct().ToList();
             return uniqueList;
+        }
+
+        public async Task<bool> SaveResults(List<string> results, int userId)
+        {
+            var diagnostico = new Diagnostico(String.Join(", ", results.ToArray()), DateTime.Now.Date, userId);
+            await _context.Diagnosticos.AddAsync(diagnostico);
+            _context.SaveChanges();
+
+            return true;
+        }
+
+        public async Task<List<Diagnostico>> GetHistory(int userId)
+        {
+            var resp = await _context.Diagnosticos.Where(x => x.UsuarioId == userId).ToListAsync();
+            return resp;
+        }
+
+        public async Task<Diagnostico> Detalhes(int diagnosticoId)
+        {
+            var resp = await _context.Diagnosticos.FindAsync(diagnosticoId);
+            return resp;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace APITCC2021.Models
 {
@@ -23,5 +24,7 @@ namespace APITCC2021.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public ICollection<Diagnostico> Diagnosticos { get; set; } = new List<Diagnostico>();
     }
 }

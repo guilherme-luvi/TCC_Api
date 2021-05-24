@@ -85,7 +85,7 @@ namespace APITCC2021
             //Injeção de repos
             services.AddScoped<DoencasRepo>();
             services.AddScoped<SintomasRepo>();
-            services.AddScoped<AssociacoesRepo>();
+            services.AddScoped<DiagnosticosRepo>();
             services.AddScoped<UsuariosRepo>();
 
             //Injeção de serviços

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace APITCC2021.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class DoencasController : ControllerBase
     {
         private readonly DoencasRepo _repo;
