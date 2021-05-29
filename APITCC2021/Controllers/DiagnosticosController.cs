@@ -56,13 +56,15 @@ namespace APITCC2021.Controllers
             }
         }
 
-        [HttpGet("{id}/detalhes")]
+        [HttpDelete("{id}")]
         [Authorize]
-        public async Task<ActionResult<dynamic>> Meus(int id)
+        public async Task<ActionResult<dynamic>> Delete(int id)
         {
             try
             {
-                var resp = await _repo.Detalhes(id);
+                var userId = int.Parse(this.User.Claims.First(i => i.Type == "UserId").Value);
+
+                var resp = await _repo.Delete(id, userId);
 
                 return Ok(resp);
             }

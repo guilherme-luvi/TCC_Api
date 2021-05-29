@@ -86,9 +86,17 @@ namespace APITCC2021.Repositories
             return resp;
         }
 
-        public async Task<Diagnostico> Detalhes(int diagnosticoId)
+        public async Task<Diagnostico> Delete(int diagnosticoId, int userId)
         {
             var resp = await _context.Diagnosticos.FindAsync(diagnosticoId);
+            if(resp.UsuarioId != userId)
+            {
+                throw new System.ArgumentException("Não Autorizado.");
+            }
+
+            _context.Diagnosticos.Remove(resp);
+            _context.SaveChanges();
+
             return resp;
         }
     }
