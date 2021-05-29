@@ -64,9 +64,9 @@ namespace APITCC2021.Controllers
             {
                 var userId = int.Parse(this.User.Claims.First(i => i.Type == "UserId").Value);
 
-                var resp = await _repo.Delete(id, userId);
+                await _repo.Delete(id, userId);
 
-                return Ok(resp);
+                return Ok();
             }
             catch (Exception e)
             {

@@ -86,10 +86,10 @@ namespace APITCC2021.Repositories
             return resp;
         }
 
-        public async Task<Diagnostico> Delete(int diagnosticoId, int userId)
+        public async Task<bool> Delete(int diagnosticoId, int userId)
         {
             var resp = await _context.Diagnosticos.FindAsync(diagnosticoId);
-            if(resp.UsuarioId != userId)
+            if (resp.UsuarioId != userId)
             {
                 throw new System.ArgumentException("Não Autorizado.");
             }
@@ -97,7 +97,7 @@ namespace APITCC2021.Repositories
             _context.Diagnosticos.Remove(resp);
             _context.SaveChanges();
 
-            return resp;
+            return true;
         }
     }
 }
